@@ -90,8 +90,8 @@ Use **Discussions** to challenge assumptions, propose alternatives, or raise pro
 
 **#500YearPlan**
 
-Share the manifesto: *(add your link here)*
-Discussion: *(link to Reddit thread, Discord, etc.)*
+Share the manifesto: *https://500yearplan.github.io/humanity*
+
 
 ---
 
