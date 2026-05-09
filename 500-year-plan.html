@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 500 Year Plan For Humanity</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --white: #f0ede6;
+    --gold: #c8a84b;
+    --dim: #888070;
+    --accent: #e05c2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Crimson Pro', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Star field */
+  .stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .star {
+    position: absolute;
+    background: var(--white);
+    border-radius: 50%;
+    animation: twinkle var(--d, 4s) infinite ease-in-out var(--delay, 0s);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--min, 0.1); }
+    50% { opacity: var(--max, 0.7); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 28px 80px;
+  }
+
+  /* Header */
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 12vw, 108px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  h1 span {
+    display: block;
+    color: var(--gold);
+  }
+
+  .subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  /* Divider */
+  .rule {
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeIn 1s 0.8s forwards;
+  }
+
+  /* Opening */
+  .opening {
+    font-size: 20px;
+    line-height: 1.65;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  /* Objectives */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+
+  .objectives {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+
+  .objective {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(200,168,75,0.15);
+    opacity: 0;
+    animation: fadeUp 0.8s forwards;
+  }
+  .objective:first-child { border-top: 1px solid rgba(200,168,75,0.15); }
+  .objective:nth-child(1) { animation-delay: 1.3s; }
+  .objective:nth-child(2) { animation-delay: 1.5s; }
+  .objective:nth-child(3) { animation-delay: 1.7s; }
+
+  .obj-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.5;
+    padding-top: 4px;
+  }
+
+  .obj-content {}
+  .obj-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .obj-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(240,237,230,0.85);
+    font-weight: 300;
+  }
+
+  /* Open source section */
+  .open-section {
+    background: rgba(200,168,75,0.06);
+    border: 1px solid rgba(200,168,75,0.2);
+    border-left: 3px solid var(--gold);
+    padding: 28px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 2s forwards;
+  }
+
+  .open-section .section-label {
+    animation: none;
+    opacity: 1;
+    margin-bottom: 12px;
+  }
+
+  .open-section p {
+    font-size: 17px;
+    line-height: 1.65;
+    font-weight: 300;
+    color: rgba(240,237,230,0.85);
+  }
+
+  .open-section p + p {
+    margin-top: 12px;
+  }
+
+  /* Call to action */
+  .cta-block {
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 2.2s forwards;
+  }
+
+  .cta-block p {
+    font-size: 19px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 700;
+  }
+  .btn-primary:hover { background: var(--white); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .btn-secondary:hover { background: rgba(200,168,75,0.1); }
+
+  /* Footer */
+  .footer {
+    margin-top: 72px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(240,237,230,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeIn 1s 2.6s forwards;
+  }
+
+  .footer-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+
+  .year-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Planet decoration */
+  .planet {
+    position: fixed;
+    right: -80px;
+    top: 15%;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #2a3050, #0d0f1a);
+    box-shadow: inset -20px -10px 40px rgba(0,0,0,0.8), 0 0 60px rgba(200,168,75,0.08);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .planet::after {
+    content: '';
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,168,75,0.12);
+  }
+
+  @media (max-width: 600px) {
+    .planet { display: none; }
+    .cta-buttons { flex-direction: column; align-items: stretch; }
+    .btn { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<canvas class="stars" id="stars"></canvas>
+<div class="planet"></div>
+
+<div class="container">
+
+  <p class="eyebrow">A Grassroots Movement · Started by Humans · Est. 2026</p>
+
+  <h1>The 500<br><span>Year Plan</span><br>For Humanity</h1>
+  <p class="subtitle">Year 2026 → Year 2526</p>
+
+  <div class="rule"></div>
+
+  <p class="opening">
+    Five centuries. Three promises. One species, finally living up to its potential.
+    This was not written by a government. Not by a corporation. Not by any single person.
+    It was started by a small group of humans who got tired of waiting —
+    and handed to everyone else to finish.
+  </p>
+
+  <p class="section-label">The Three Objectives · To Be Achieved By 2526</p>
+
+  <div class="objectives">
+    <div class="objective">
+      <div class="obj-num">01</div>
+      <div class="obj-content">
+        <div class="obj-title">Humanity Beyond Earth</div>
+        <p class="obj-text">A billion people will call Mars home. Another billion will live on the Moon and in artificial habitats among the stars. We become a multi-world species — not to abandon Earth, but to ensure no single catastrophe can end our story.</p>
+      </div>
+    </div>
+    <div class="objective">
+      <div class="obj-num">02</div>
+      <div class="obj-content">
+        <div class="obj-title">A Life Worth Living, Fully</div>
+        <p class="obj-text">The average human lifespan reaches 300 years — with the health, energy, and vitality of a 25-year-old for the entire duration. Not just longer life. Better life. Every single year of it.</p>
+      </div>
+    </div>
+    <div class="objective">
+      <div class="obj-num">03</div>
+      <div class="obj-content">
+        <div class="obj-title">No One Left Behind</div>
+        <p class="obj-text">Every person on Earth — and beyond — receives free air, water, food, shelter, education, medicine, and all resources necessary to live with dignity. Not charity. A baseline. A floor beneath every human life.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="open-section">
+    <p class="section-label">Open Source · The Path Is Yours To Write</p>
+    <p>We know where we're going. We don't pretend to know every step.
+    That's the point. The milestones, the strategies, the breakthroughs needed to get there — those belong to scientists, engineers, farmers, teachers, artists, and dreamers who haven't been born yet.</p>
+    <p>This plan is open. Contribute a milestone. Challenge an assumption. Fork it entirely. The only rule: the three objectives stay. Everything else is up for debate.</p>
+  </div>
+
+  <div class="cta-block">
+    <p>Five hundred years is only 5 generations away.<br>You → your children → their children → their children → their children.<br>A baby born today could hold a grandchild who lives to see all three objectives met.</p>
+    <div class="cta-buttons">
+      <button class="btn btn-primary" onclick="alert('Share this page — the movement starts with you.')">Share This Plan</button>
+      <button class="btn btn-secondary" onclick="alert('Coming soon: the open-source repository for humanity.')">Contribute a Milestone</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-tag">#500YearPlan · Open to all · Owned by none</span>
+    <span class="year-badge">2026 — 2526</span>
+  </div>
+
+</div>
+
+<script>
+// Generate stars
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const starData = Array.from({length: 180}, () => ({
+  x: Math.random(),
+  y: Math.random(),
+  r: Math.random() * 1.2 + 0.2,
+  phase: Math.random() * Math.PI * 2,
+  speed: Math.random() * 0.4 + 0.2
+}));
+
+function draw(t) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  starData.forEach(s => {
+    const opacity = 0.1 + 0.5 * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
+    ctx.beginPath();
+    ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(240,237,230,${opacity})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+</script>
+
+</body>
+</html>
